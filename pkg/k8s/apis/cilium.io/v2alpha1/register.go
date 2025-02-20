@@ -111,11 +111,10 @@ const (
 	CPIPKindDefinition = "CiliumPodIPPool"
 	CPIPName           = CPIPPluralName + "." + CustomResourceDefinitionGroup
 
-	// CiliumGatewayClassConfig (CGCC)
-	CGCCPluralName     = "ciliumgatewayclassconfigs"
-	CGCCListName       = "ciliumgatewayclassconfiglists"
-	CGCCKindDefinition = "CiliumGatewayClassConfig"
-	CGCCName           = CGCCPluralName + "." + CustomResourceDefinitionGroup
+	// CiliumFlowTagger
+	CFTPluralName     = "ciliumflowtaggers"
+	CFTKindDefinition = "CiliumFowTagger"
+	CFTName           = CFTPluralName + "." + CustomResourceDefinitionGroup
 )
 
 // SchemeGroupVersion is group version used to register these objects
@@ -186,9 +185,8 @@ func addKnownTypes(scheme *runtime.Scheme) error {
 		&CiliumBGPNodeConfigOverride{},
 		&CiliumBGPNodeConfigOverrideList{},
 
-		// new Gateway API types
-		&CiliumGatewayClassConfig{},
-		&CiliumGatewayClassConfigList{},
+		// Flow Tagger type
+		&CiliumFlowTaggerList{},
 	)
 
 	metav1.AddToGroupVersion(scheme, SchemeGroupVersion)

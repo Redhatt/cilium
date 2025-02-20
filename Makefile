@@ -227,8 +227,17 @@ include Makefile.kind
 
 -include Makefile.docker
 
+# manifests: ## Generate K8s manifests e.g. CRD, RBAC etc.
+# 	contrib/scripts/k8s-manifests-gen.sh
+
+##@ API targets
+CRD_OPTIONS ?= "crd:crdVersions=v1"
 manifests: ## Generate K8s manifests e.g. CRD, RBAC etc.
-	contrib/scripts/k8s-manifests-gen.sh
+	$(eval TMPDIR := $(shell mktemp -d -t cilium.tmpXXXXXXXX))
+	$(QUIET)$(GO) run sigs.k8s.io/controller-tools/cmd/controller-gen $(CRD_OPTIONS) paths="$(PWD)/pkg/k8s/apis/cilium.io/v2;$(PWD)/pkg/k8s/apis/cilium.io/v2alpha1" output:crd:artifacts:config="$(TMPDIR)"
+	$(QUIET)$(GO) run ./tools/crdcheck "$(TMPDIR)"
+	mv ${TMPDIR}/cilium.io_ciliumflowtaggers.yaml ./pkg/k8s/apis/cilium.io/client/crds/v2/ciliumflowtaggers.yaml
+	rm -rf $(TMPDIR)
 
 .PHONY: generate-apis
 generate-apis: generate-api generate-health-api generate-hubble-api generate-operator-api generate-kvstoremesh-api generate-sdp-api
@@ -445,8 +454,6 @@ endif
 	$(QUIET) contrib/scripts/check-logrus.sh
 	@$(ECHO_CHECK) contrib/scripts/check-safenetlink.sh
 	$(QUIET) contrib/scripts/check-safenetlink.sh
-	@$(ECHO_CHECK) contrib/scripts/check-datapathconfig.sh
-	$(QUIET) contrib/scripts/check-datapathconfig.sh
 
 pprof-heap: ## Get Go pprof heap profile.
 	$(QUIET)$(GO) tool pprof http://localhost:6060/debug/pprof/heap

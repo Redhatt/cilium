@@ -21,7 +21,7 @@ type CiliumCIDRGroupExpansion interface{}
 
 type CiliumEndpointSliceExpansion interface{}
 
-type CiliumGatewayClassConfigExpansion interface{}
+type CiliumFlowTaggerExpansion interface{}
 
 type CiliumL2AnnouncementPolicyExpansion interface{}
 
