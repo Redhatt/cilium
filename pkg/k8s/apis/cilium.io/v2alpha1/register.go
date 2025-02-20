@@ -111,6 +111,12 @@ const (
 	CPIPKindDefinition = "CiliumPodIPPool"
 	CPIPName           = CPIPPluralName + "." + CustomResourceDefinitionGroup
 
+	// CiliumGatewayClassConfig (CGCC)
+	CGCCPluralName     = "ciliumgatewayclassconfigs"
+	CGCCListName       = "ciliumgatewayclassconfiglists"
+	CGCCKindDefinition = "CiliumGatewayClassConfig"
+	CGCCName           = CGCCPluralName + "." + CustomResourceDefinitionGroup
+
 	// CiliumFlowTagger
 	CFTPluralName     = "ciliumflowtaggers"
 	CFTKindDefinition = "CiliumFowTagger"
@@ -184,6 +190,10 @@ func addKnownTypes(scheme *runtime.Scheme) error {
 		&CiliumBGPNodeConfigList{},
 		&CiliumBGPNodeConfigOverride{},
 		&CiliumBGPNodeConfigOverrideList{},
+
+		// new Gateway API types
+		&CiliumGatewayClassConfig{},
+		&CiliumGatewayClassConfigList{},
 
 		// Flow Tagger type
 		&CiliumFlowTaggerList{},

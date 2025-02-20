@@ -29,6 +29,8 @@ type Interface interface {
 	CiliumEndpointSlices() CiliumEndpointSliceInformer
 	// CiliumFlowTaggers returns a CiliumFlowTaggerInformer.
 	CiliumFlowTaggers() CiliumFlowTaggerInformer
+	// CiliumGatewayClassConfigs returns a CiliumGatewayClassConfigInformer.
+	CiliumGatewayClassConfigs() CiliumGatewayClassConfigInformer
 	// CiliumL2AnnouncementPolicies returns a CiliumL2AnnouncementPolicyInformer.
 	CiliumL2AnnouncementPolicies() CiliumL2AnnouncementPolicyInformer
 	// CiliumLoadBalancerIPPools returns a CiliumLoadBalancerIPPoolInformer.
@@ -93,6 +95,11 @@ func (v *version) CiliumEndpointSlices() CiliumEndpointSliceInformer {
 // CiliumFlowTaggers returns a CiliumFlowTaggerInformer.
 func (v *version) CiliumFlowTaggers() CiliumFlowTaggerInformer {
 	return &ciliumFlowTaggerInformer{factory: v.factory, tweakListOptions: v.tweakListOptions}
+}
+
+// CiliumGatewayClassConfigs returns a CiliumGatewayClassConfigInformer.
+func (v *version) CiliumGatewayClassConfigs() CiliumGatewayClassConfigInformer {
+	return &ciliumGatewayClassConfigInformer{factory: v.factory, tweakListOptions: v.tweakListOptions}
 }
 
 // CiliumL2AnnouncementPolicies returns a CiliumL2AnnouncementPolicyInformer.

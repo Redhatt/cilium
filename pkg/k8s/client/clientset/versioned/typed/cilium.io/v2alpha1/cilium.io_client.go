@@ -24,6 +24,7 @@ type CiliumV2alpha1Interface interface {
 	CiliumCIDRGroupsGetter
 	CiliumEndpointSlicesGetter
 	CiliumFlowTaggersGetter
+	CiliumGatewayClassConfigsGetter
 	CiliumL2AnnouncementPoliciesGetter
 	CiliumLoadBalancerIPPoolsGetter
 	CiliumNodeConfigsGetter
@@ -69,6 +70,13 @@ func (c *CiliumV2alpha1Client) CiliumEndpointSlices() CiliumEndpointSliceInterfa
 
 func (c *CiliumV2alpha1Client) CiliumFlowTaggers() CiliumFlowTaggerInterface {
 	return newCiliumFlowTaggers(c)
+<<<<<<< HEAD
+=======
+}
+
+func (c *CiliumV2alpha1Client) CiliumGatewayClassConfigs() CiliumGatewayClassConfigInterface {
+	return newCiliumGatewayClassConfigs(c)
+>>>>>>> ee4344fe67 (made changes to fix older version issues)
 }
 
 func (c *CiliumV2alpha1Client) CiliumL2AnnouncementPolicies() CiliumL2AnnouncementPolicyInterface {

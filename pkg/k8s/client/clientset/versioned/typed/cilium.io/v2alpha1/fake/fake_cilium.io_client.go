@@ -51,6 +51,10 @@ func (c *FakeCiliumV2alpha1) CiliumFlowTaggers() v2alpha1.CiliumFlowTaggerInterf
 	return newFakeCiliumFlowTaggers(c)
 }
 
+func (c *FakeCiliumV2alpha1) CiliumGatewayClassConfigs() v2alpha1.CiliumGatewayClassConfigInterface {
+	return newFakeCiliumGatewayClassConfigs(c)
+}
+
 func (c *FakeCiliumV2alpha1) CiliumL2AnnouncementPolicies() v2alpha1.CiliumL2AnnouncementPolicyInterface {
 	return newFakeCiliumL2AnnouncementPolicies(c)
 }
